@@ -7,12 +7,21 @@ import pdb
 import kat
 app = Flask(__name__)
 import json
+"""
+An object to represent a Search result
+:param name: The title of the result
+:param magnet: The magnet link(if the result is a torrent)
+:param link: A download link
+:param size: The size of the file.
+:param quality: A general measurement used traditionally for torrents
+"""
 class SearchResult():
-    def __init__(self, name, magnet, link, size, seeders, leachers):
+    def __init__(self, name, magnet, link, size, seeders, leachers,type):
         self.title = name
         self.magnet = magnet
         self.link = link
         self.size = size
+        self.type = type
         leachers = int(leachers)
         seeders = int(seeders)
         if not leachers == 0:
