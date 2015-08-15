@@ -1,4 +1,6 @@
 awsebcli==3.4.5
+backports.ssl-match-hostname==3.4.0.2
+beautifulsoup4==4.4.0
 cement==2.4.0
 Cython==0.21.2
 docker-py==1.1.0
@@ -9,6 +11,7 @@ gunicorn==19.1.1
 itsdangerous==0.24
 Jinja2==2.7.3
 jmespath==0.7.1
+kat==0.1.10
 lxml==3.4.1
 MarkupSafe==0.23
 pathspec==0.3.3
