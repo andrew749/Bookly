@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template, Response
 import requests
 from lxml import html
 import lxml
@@ -7,14 +7,18 @@ import pdb
 import kat
 app = Flask(__name__)
 import json
-kat.set_base_url("http://kat.cr")
 class SearchResult():
     def __init__(self, name, magnet, link, size, seeders, leachers):
         self.title = name
         self.magnet = magnet
         self.link = link
         self.size = size
-        self.quality = seeders/leachers
+        leachers = int(leachers)
+        seeders = int(seeders)
+        if not leachers == 0:
+            self.quality = int(seeders)/int(leachers)
+        else:
+            self.quality = seeders
     def toJSON(self):
         return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality})
 
@@ -52,7 +56,9 @@ def searchBook():
         resultList.appendResult(tempResult)
 
     searchResults.append(resultList)
-    return "Success"
+    return Response(response = resultList,
+                    status = 200,
+                    mimetype='application/json')
 
 #Start the application
 if __name__ == '__main__':
