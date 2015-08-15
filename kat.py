@@ -359,8 +359,6 @@ def recent(category=None, pages=1, sort=None, order=None):
 
 #module init
 if __name__ != '__main__':
-		config = ConfigParser.ConfigParser()
-		config.read('conf.cfg')
-		Search.base_url = config.get('url', 'base_url')
-		Search.search_url = Search.base_url + "/usearch/"
-		Search.latest_url = Search.base_url+"/new"
+    Search.base_url = "http://katproxy.com"
+    Search.search_url = Search.base_url + "/usearch/"
+    Search.latest_url = Search.base_url+"/new"
