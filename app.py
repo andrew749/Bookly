@@ -49,7 +49,7 @@ def searchBook():
     results = kat.search(query, category = kat.Categories.BOOKS)
     resultList = convertResultToDataKAT(query, results)
     searchResults.append(resultList)
-    return Response(response = resultList.toJSON(),
+    return Response(response = resultList,
                     status = 200,
                     mimetype='application/json')
 
