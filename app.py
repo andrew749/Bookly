@@ -14,9 +14,10 @@ An object to represent a Search result
 :param link: A download link
 :param size: The size of the file.
 :param quality: A general measurement used traditionally for torrents
+:param type: The type of result (0 for torrent, 1 for direct download)
 """
 class SearchResult():
-    def __init__(self, name, magnet, link, size, seeders, leachers,type):
+    def __init__(self, name, magnet, link, size, seeders, leachers,type=1):
         self.title = name
         self.magnet = magnet
         self.link = link
@@ -29,7 +30,7 @@ class SearchResult():
         else:
             self.quality = seeders
     def toJSON(self):
-        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality})
+        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality, 'type':self.type})
 
 class ResultList():
     def __init__(self, name):
@@ -65,7 +66,7 @@ def searchBook():
 def convertResultToDataKAT(query, results):
     resultList = ResultList(query)
     for x in results:
-        tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers)
+        tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers, 0)
         resultList.appendResult(tempResult)
     return resultList
 
