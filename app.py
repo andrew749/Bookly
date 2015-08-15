@@ -46,19 +46,19 @@ def returnTop():
 @app.route('/search')
 def searchBook():
     query = request.args.get('q')
-
-    resultList = ResultList(query)
-
     results = kat.search(query, category = kat.Categories.BOOKS)
+    resultList = convertResultToDataKAT(query, results)
+    searchResults.append(resultList)
+    return Response(response = resultList.toJSON(),
+                    status = 200,
+                    mimetype='application/json')
 
+def convertResultToDataKAT(query, results):
+    resultList = ResultList(query)
     for x in results:
         tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers)
         resultList.appendResult(tempResult)
-
-    searchResults.append(resultList)
-    return Response(response = resultList,
-                    status = 200,
-                    mimetype='application/json')
+    return resultList
 
 #Start the application
 if __name__ == '__main__':
