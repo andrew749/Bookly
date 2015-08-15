@@ -7,7 +7,7 @@ import pdb
 import kat
 app = Flask(__name__)
 import json
-
+kat.set_base_url("http://kat.cr")
 class SearchResult():
     def __init__(self, name, magnet, link, size, seeders, leachers):
         self.title = name
@@ -15,6 +15,8 @@ class SearchResult():
         self.link = link
         self.size = size
         self.quality = seeders/leachers
+    def toJSON(self):
+        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality})
 
 class ResultList():
     def __init__(self, name):
@@ -24,6 +26,8 @@ class ResultList():
         self.results.append(result)
     def appendResults(self,results):
         self.results += results
+    def toJSON(self):
+        return [x.toJSON() for x in self.results]
 
 
 searchResults = []
@@ -41,7 +45,7 @@ def searchBook():
 
     resultList = ResultList(query)
 
-    results = kat.search(query)
+    results = kat.search(query, category = kat.Categories.BOOKS)
 
     for x in results:
         tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers)
