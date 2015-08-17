@@ -59,7 +59,7 @@ def searchBook():
     results = kat.search(query, category = kat.Categories.BOOKS)
     resultList = convertResultToDataKAT(query, results)
     searchResults.append(resultList)
-    return Response(response = resultList,
+    return Response(response = resultList.toJSON(),
                     status = 200,
                     mimetype='application/json')
 
@@ -72,4 +72,4 @@ def convertResultToDataKAT(query, results):
 
 #Start the application
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', debug=True)
+    app.run(debug = True)
