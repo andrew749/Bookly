@@ -30,7 +30,7 @@ class SearchResult():
         else:
             self.quality = seeders
     def toJSON(self):
-        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality, 'type':self.type})
+        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality, 'type':self.type},indent = 4)
 
 class ResultList():
     def __init__(self, name):
@@ -41,7 +41,7 @@ class ResultList():
     def appendResults(self,results):
         self.results += results
     def toJSON(self):
-        return [x.toJSON() for x in self.results]
+        return json.dumps([x.toJSON() for x in self.results], indent = 4)
 
 
 searchResults = []
@@ -72,4 +72,4 @@ def convertResultToDataKAT(query, results):
 
 #Start the application
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host='0.0.0.0', debug = True)
