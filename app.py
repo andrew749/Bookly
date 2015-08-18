@@ -17,12 +17,13 @@ An object to represent a Search result
 :param type: The type of result (0 for torrent, 1 for direct download)
 """
 class SearchResult():
-    def __init__(self, name, magnet, link, size, seeders, leachers,type=1):
+    def __init__(self, name, magnet, link, size, seeders, leachers,type=1, page):
         self.title = name
         self.magnet = magnet
         self.link = link
         self.size = size
         self.type = type
+        self.page = page
         leachers = int(leachers)
         seeders = int(seeders)
         if not leachers == 0:
@@ -30,7 +31,7 @@ class SearchResult():
         else:
             self.quality = seeders
     def toJSON(self):
-        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality, 'type':self.type},indent = 4)
+        return json.dumps({"title":self.title,'magnet':self.magnet, 'link':self.link, 'size':self.size, 'quality':self.quality, 'type':self.type, 'page':self.page},indent = 4)
 
 class ResultList():
     def __init__(self, name):
@@ -66,7 +67,7 @@ def searchBook():
 def convertResultToDataKAT(query, results):
     resultList = ResultList(query)
     for x in results:
-        tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers, 0)
+        tempResult = SearchResult(x.title, x.magnet, x.download, x.size, x.seeders, x.leechers, x.page, 0)
         resultList.appendResult(tempResult)
     return resultList
 
