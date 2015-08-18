@@ -17,7 +17,7 @@ An object to represent a Search result
 :param type: The type of result (0 for torrent, 1 for direct download)
 """
 class SearchResult():
-    def __init__(self, name, magnet, link, size, seeders, leachers,type=1, page):
+    def __init__(self, name, magnet, link, size, seeders, leachers, page,type=1):
         self.title = name
         self.magnet = magnet
         self.link = link
