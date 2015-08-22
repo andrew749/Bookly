@@ -7,7 +7,8 @@ import pdb
 app = Flask(__name__)
 import json
 import ResultList, SearchResult
-from plugins import *
+from plugins import katmod
+#from plugins import *
 """
 An object to represent a Search result
 :param name: The title of the result
@@ -21,7 +22,7 @@ searchResults = []
 
 @app.route('/')
 def serveMain():
-    pass
+    return "Success"
 
 @app.route('/popular')
 def returnTop():

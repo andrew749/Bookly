@@ -13,4 +13,3 @@ def searchBook(query):
         newpage = html.fromstring(urllib2.urlopen(baseurl+link).read())
         li2 = newpage.xpath("//a[@class='link' and @type='application/epub+zip']/@href")[0]
         print (title,author,li2[2:])
-searchBook("sherlock")

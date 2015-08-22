@@ -9,8 +9,8 @@ def searchBook(query):
     listitems = page.xpath(".//table//table//tr")
     for x in listitems:
         pdb.set_trace()
-        title = x.xpath(".//a/@title")[0]
-        link = x.xpath(".//a/@href")[0]
+        #title = x.xpath(".//a/@title")[0]
+        #link = x.xpath(".//a/@href")[0]
         newpage = html.fromstring(urllib2.urlopen(link).read())
         print htmlstring
-searchBook("software")
+#searchBook("software")
