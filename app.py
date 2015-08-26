@@ -8,6 +8,7 @@ app = Flask(__name__)
 import json
 import ResultList, SearchResult
 from plugins import katmod
+from plugins import gutenberg
 #from plugins import *
 """
 An object to represent a Search result
@@ -31,9 +32,10 @@ def returnTop():
 @app.route('/search')
 def searchBook():
     query = request.args.get('q')
-    songResultList = ResultList(query)
+    songResultList = ResultList.ResultList(query)
     kat_results = katmod.searchBook(query)
-
+    gutenberg_results = gutenberg.searchBook(query)
+    pdb.set_trace()
     songResultList.appendResults(results)
     searchResults.append(songResultList)
 

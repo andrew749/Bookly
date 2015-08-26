@@ -13,6 +13,6 @@ def searchBook(query):
         newpage = html.fromstring(urllib2.urlopen(baseurl+link).read())
         li2 = newpage.xpath("//a[@class='link' and @type='application/epub+zip']/@href")[0]
         finalLink = li2[2:]
-        tempResult = SearchResult(title, finalLink)
+        tempResult = SearchResult(title, finalLink, type=0)
         searchResults.append(tempResult)
     return searchResults
