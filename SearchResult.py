@@ -1,6 +1,6 @@
 import json
 class SearchResult():
-    def __init__(self, name, magnet, link, size, seeders, leachers, page,type=1):
+    def __init__(self, name, link, size=0, page=None, leachers=0, magnet=None, seeders=0, type=1):
         self.title = name
         self.magnet = magnet
         self.link = link

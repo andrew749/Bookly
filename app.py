@@ -31,9 +31,13 @@ def returnTop():
 @app.route('/search')
 def searchBook():
     query = request.args.get('q')
-    results = katmod.searchBook(query)
-    searchResults.append(results)
-    return Response(response = results.toJSON(),
+    songResultList = ResultList(query)
+    kat_results = katmod.searchBook(query)
+
+    songResultList.appendResults(results)
+    searchResults.append(songResultList)
+
+    return Response(response = songResultList.toJSON(),
                     status = 200,
                     mimetype='application/json')
 
