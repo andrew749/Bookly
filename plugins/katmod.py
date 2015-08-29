@@ -8,7 +8,7 @@ from SearchResult import SearchResult
 def convertResultToDataKAT(query, results):
     resultList = []
     for x in results:
-        tempResult = SearchResult(x.title, x.download, x.size, x.page, x.leechers, x.magnet, x.seeders, 0)
+        tempResult = SearchResult(x.title, x.download, x.size, x.page, x.leechers, x.magnet, x.seeders, 1)
         resultList.append(tempResult)
     return resultList
 
