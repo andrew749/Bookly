@@ -35,8 +35,8 @@ def searchBook():
     songResultList = ResultList.ResultList(query)
     kat_results = katmod.searchBook(query)
     gutenberg_results = gutenberg.searchBook(query)
-    pdb.set_trace()
-    songResultList.appendResults(results)
+    songResultList.appendResults(kat_results)
+    songResultList.appendResults(gutenberg_results)
     searchResults.append(songResultList)
 
     return Response(response = songResultList.toJSON(),
